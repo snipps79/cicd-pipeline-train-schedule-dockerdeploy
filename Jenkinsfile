@@ -17,7 +17,11 @@ pipeline {
                     app = docker.build("snipps79/train-schedule")
                     app.inside {
                         sh 'echo $(curl localhost:8080)'
-                        stage('Push Docker Image') {
+                    }
+                }
+            }
+        }
+        stage('Push Docker Image') {
             when {
                 branch 'master'
             }
@@ -30,5 +34,3 @@ pipeline {
                 }
             }
         }
-    }
-}
